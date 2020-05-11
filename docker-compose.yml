@@ -1,0 +1,15 @@
+version: "3"
+services:
+  go:
+    build: ./
+    ports:
+      - "3000"
+    volumes:
+      - ./:/app
+  caddy:
+    image: caddy:2.0.0
+    ports:
+      - "2020:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./tmp/caddy/pki:/data/caddy/pki
